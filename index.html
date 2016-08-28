@@ -101,6 +101,14 @@
                 font-size: 14px;
             }
 
+            .type-fx-25s {
+                background-color: #7C0000;
+            }
+
+            .type-fx-50s {
+                background-color: #A40000;
+            }
+
             .type-fx-100 {
                 background-color: #FFFFFF;
             }
@@ -305,6 +313,9 @@
                         <a class="type-abbr type-fairy">Fai</a>
                     </th>
                     <th>
+                        <a class="type-abbr type-normal" href="javascript:sortBy('score');">Score</a>
+                    </th>
+                    <th>
                         <a class="type-abbr type-ground" href="javascript:sortBy('immunities');">Immu</a>
                     </th>
                     <th>
@@ -404,12 +415,16 @@
                     th.appendChild(a);
                     tr.appendChild(th);
 
+                    var score = 0;
+
                     var immunities  = 0;
                     var resistances = 0;
                     var weaknesses  = 0;
 
                     for (var j = 0; j < 18; j++) {
                         var value = defense1[j];
+
+                        score += value;
 
                         var td = document.createElement("td");
                         td.setAttribute("id", typenames[j] + " → " + type1);
@@ -423,6 +438,18 @@
 
                         tr.appendChild(td);
                     }
+
+                    score = 18 / score;
+
+                    var td = document.createElement("td");
+                    td.setAttribute("id", type1 + " Score");
+                    if      (score >= 1.21) td.setAttribute("class", "type-fx-cell type-fx-400");
+                    else if (score >  1.00) td.setAttribute("class", "type-fx-cell type-fx-200");
+                    else if (score <= 0.83) td.setAttribute("class", "type-fx-cell type-fx-25s");
+                    else if (score <  1.00) td.setAttribute("class", "type-fx-cell type-fx-50s");
+                    else                    td.setAttribute("class", "type-fx-cell type-fx-0");
+                    td.innerHTML = score.toFixed(2);
+                    tr.appendChild(td);
 
                     var ratio = (resistances + immunities) / weaknesses;
 
@@ -454,6 +481,7 @@
 
                     rows.push({
                         element:     tr,
+                        score:       score,
                         immunities:  immunities,
                         resistances: resistances,
                         weaknesses:  weaknesses,
@@ -482,12 +510,16 @@
                         th.appendChild(a);
                         tr.appendChild(th);
 
+                        var score = 0;
+
                         var immunities  = 0;
                         var resistances = 0;
                         var weaknesses  = 0;
 
                         for (var k = 0; k < 18; k++) {
                             var value  = defense1[k] * defense2[k];
+
+                            score += value;
 
                             var td = document.createElement("td");
                             td.setAttribute("id", typenames[k] + " → " + name);
@@ -503,6 +535,18 @@
 
                             tr.appendChild(td);
                         }
+
+                        score = 18 / score;
+
+                        var td = document.createElement("td");
+                        td.setAttribute("id", name + " Score");
+                        if      (score >= 1.21) td.setAttribute("class", "type-fx-cell type-fx-400");
+                        else if (score >  1.00) td.setAttribute("class", "type-fx-cell type-fx-200");
+                        else if (score <= 0.83) td.setAttribute("class", "type-fx-cell type-fx-25s");
+                        else if (score <  1.00) td.setAttribute("class", "type-fx-cell type-fx-50s");
+                        else                    td.setAttribute("class", "type-fx-cell type-fx-0");
+                        td.innerHTML = score.toFixed(2);
+                        tr.appendChild(td);
 
                         var ratio = (resistances + immunities) / weaknesses;
 
@@ -534,6 +578,7 @@
 
                         rows.push({
                             element:     tr,
+                            score:       score,
                             immunities:  immunities,
                             resistances: resistances,
                             weaknesses:  weaknesses,
@@ -543,6 +588,7 @@
                 }
 
                 var ascending = {
+                    score:       true,
                     immunities:  true,
                     resistances: true,
                     weaknesses:  true,
