@@ -394,11 +394,13 @@
                                 , "Fairy"
                                 ];
 
+                var types = typenames.length;
+
                 var tbody = document.getElementById("typechart-body");
 
                 var rows = [];
 
-                for (var i = 0; i < 18; i++) {
+                for (var i = 0; i < types; i++) {
                     var type1    = typenames[i];
                     var defense1 = typechart[i];
 
@@ -421,7 +423,7 @@
                     var resistances = 0;
                     var weaknesses  = 0;
 
-                    for (var j = 0; j < 18; j++) {
+                    for (var j = 0; j < types; j++) {
                         var value = defense1[j];
 
                         score += value;
@@ -439,7 +441,7 @@
                         tr.appendChild(td);
                     }
 
-                    score = 18 / score;
+                    score = types / score;
 
                     var td = document.createElement("td");
                     td.setAttribute("id", type1 + " Score");
@@ -488,7 +490,7 @@
                         ratio:       ratio
                     });
 
-                    for (var j = i + 1; j < 18; j++) {
+                    for (var j = i + 1; j < types; j++) {
                         var type2    = typenames[j];
                         var defense2 = typechart[j];
                         var name     = type1 + "/" + type2;
@@ -516,7 +518,7 @@
                         var resistances = 0;
                         var weaknesses  = 0;
 
-                        for (var k = 0; k < 18; k++) {
+                        for (var k = 0; k < types; k++) {
                             var value  = defense1[k] * defense2[k];
 
                             score += value;
@@ -536,7 +538,7 @@
                             tr.appendChild(td);
                         }
 
-                        score = 18 / score;
+                        score = types / score;
 
                         var td = document.createElement("td");
                         td.setAttribute("id", name + " Score");
