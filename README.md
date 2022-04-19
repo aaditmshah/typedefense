@@ -1,4 +1,4 @@
-# [Pokémon Type Defense](https://cdn.rawgit.com/aaditmshah/typedefense/master/index.html) #
+# [Pokémon Type Defense](https://aaditmshah.github.io/typedefense/) #
 
 The ratio of the number of resistances and immunities to the number of weaknesses for each pokémon type and type combination. Read the following [Reddit thread](https://www.reddit.com/r/TruePokemon/comments/4zz3zv/ratio_of_resistances_and_immunities_to_weaknesses/) for more information.
 
